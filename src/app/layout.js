@@ -1,5 +1,7 @@
 import localFont from "next/font/local";
 import "./globals.css";
+import { JobProvider } from "./Context/JobContext";
+import Sessionwrapper from "./Components/Sessionwrapper";
 
 const geistSans = localFont({
   src: "./fonts/GeistVF.woff",
@@ -20,10 +22,12 @@ export const metadata = {
 export default function RootLayout({ children }) {
   return (
     <html lang="en">
-      <body
-        className={`${geistSans.variable} ${geistMono.variable} antialiased`}
-      >
-        {children}
+      <body className={`${geistSans.variable} ${geistMono.variable} antialiased`}>
+        <Sessionwrapper>
+          <JobProvider>
+            {children}
+          </JobProvider>
+        </Sessionwrapper>
       </body>
     </html>
   );
